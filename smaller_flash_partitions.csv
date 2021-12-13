@@ -1,0 +1,11 @@
+# Custom partion table with two OTA firmware partitions and no factory partition
+# Each ota partition is just under 2 MB in size.  In the unlikely event this
+# table needs to be changed, make sure that the ota partitions are always the same size.
+#
+# Keep in mind that ota partition offsets must be aligned to a 0x10000 (64K) byte boundary
+#
+# Name,   Type, SubType, Offset,  Size,     Flags
+nvs,      data, nvs,    0x009000, 0x015000
+otadata,  data, ota,    0x01E000, 0x002000
+ota_0,    0,    ota_0,  0x020000, 0x1F0000
+ota_1,    0,    ota_1,  0x210000, 0x1F0000
