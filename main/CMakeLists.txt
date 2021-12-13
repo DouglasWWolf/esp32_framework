@@ -1,0 +1,13 @@
+idf_component_register(SRCS
+"flash_io.cpp"
+"globals.cpp"
+"main.cpp"
+"misc_hw.cpp"
+"network.cpp"
+"nv_storage.cpp"
+"nvram.cpp"
+"parser.cpp"
+"tcp_handlers.cpp"
+"tcp_server.cpp"
+"stack_track.cpp"
+INCLUDE_DIRS ".")
