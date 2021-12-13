@@ -9,6 +9,7 @@
 #include "nvram.h"
 #include "stack_track.h"
 #include "tcp_server.h"
+#include "buttons.h"
 
 extern CSystem     System;
 extern CNVS        NVS;
@@ -17,6 +18,7 @@ extern CFlashIO    FlashIO;
 extern CNVRAM      NVRAM;
 extern CStackTrack StackMgr;
 extern CTCPServer  TCPServer;
+extern CProvButton ProvButton;
 
 
 uint32_t crc32(void *buf, size_t len);

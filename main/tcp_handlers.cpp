@@ -266,6 +266,21 @@ static void handle_cmd_nvset()
 
 
 
+//========================================================================================================= 
+// handle_cmd_stack() - Displays the remaining free bytes on the task stacks
+//========================================================================================================= 
+void handle_cmd_stack()
+{
+    for (int i=0; i<TASK_IDX_COUNT; ++i)
+    {
+        task_idx_t idx = (task_idx_t)i;
+        TCPServer.send(" %-10s %5i\r\n", StackMgr.name(idx), StackMgr.remaining(idx));
+    }
+    TCPServer.pass();
+}
+//========================================================================================================= 
+
+
 
 //========================================================================================================= 
 // handle_tcp_command() - Parses an input line from the server and takes the appropriate action
@@ -289,6 +304,7 @@ void handle_tcp_command(char* input)
     else if (strcmp(token, "nvset"  ) == 0) handle_cmd_nvset();
     else if (strcmp(token, "rssi"   ) == 0) handle_cmd_rssi();
     else if (strcmp(token, "wifi"   ) == 0) handle_cmd_wifi();
+    else if (strcmp(token, "stack"  ) == 0) handle_cmd_stack();
 
     else fail_syntax();
 

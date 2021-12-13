@@ -4,13 +4,26 @@
 #include "globals.h"
 #include "common.h"
 
+// High-priority task for reading/writing NVS
 CFlashIO    FlashIO;
+
+// Non-volatile storage
 CNVS        NVS;
+
+// Networking code
 CNetwork    Network;
+
+// Global variables
 CSystem     System;
+
+// The TCP server
 CTCPServer  TCPServer;
+
+// Stack high-water mark manager
 CStackTrack StackMgr;
 
+// The provisioning button
+CProvButton ProvButton;
 
 //========================================================================================================= 
 // msdelay() - Do nothing for the specified number of milliseconds

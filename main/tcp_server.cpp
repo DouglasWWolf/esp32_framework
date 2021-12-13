@@ -328,9 +328,7 @@ static bool wait_for_connection()
     // Wait for a client connect and accept it when it arrives
     while (sock == CLOSED)
     {
-        printf("Waiting to accept a connection!\n");
         sock = accept(listen_sock, (struct sockaddr *)&source_addr, &addr_len);
-        printf("Accepted!!!!\n");
     }
 
     // The socket was created

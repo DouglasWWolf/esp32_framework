@@ -1,4 +1,6 @@
 idf_component_register(SRCS
+"button.cpp"
+"buttons.cpp"
 "flash_io.cpp"
 "globals.cpp"
 "main.cpp"
