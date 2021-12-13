@@ -49,6 +49,9 @@ void cpp_main()
     // Initialize the provisioning button
     ProvButton.init(PIN_PROV_BUTTON);
 
+    // Configure the I2C bus.   This must be done before initializing I2C peripherals
+    I2C.init(I2C_NUM_0, PIN_I2C_SDA, PIN_I2C_SCL);
+
     // Find out if we should start the Wi-Fi in "Access-Point" mode
     bool start_as_ap = ProvButton.is_pressed()       ||
                        NVS.data.network_ssid[0] == 0 ||
@@ -57,7 +60,6 @@ void cpp_main()
     // At next boot, we won't be forcing Wi-Fi to start in AP mode
     NVRAM.start_wifi_ap = false;
    
-
     // If the provisioning button is pressed or there is no SSID to connect to,
     // start the network in "access point" mode, otherwise start trying to
     // connect to the local WiFi network.

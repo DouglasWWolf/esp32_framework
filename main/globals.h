@@ -10,6 +10,7 @@
 #include "stack_track.h"
 #include "tcp_server.h"
 #include "buttons.h"
+#include "i2c_bus.h"
 
 extern CSystem     System;
 extern CNVS        NVS;
@@ -19,6 +20,7 @@ extern CNVRAM      NVRAM;
 extern CStackTrack StackMgr;
 extern CTCPServer  TCPServer;
 extern CProvButton ProvButton;
+extern CI2C        I2C;
 
 
 uint32_t crc32(void *buf, size_t len);

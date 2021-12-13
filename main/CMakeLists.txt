@@ -3,6 +3,7 @@ idf_component_register(SRCS
 "buttons.cpp"
 "flash_io.cpp"
 "globals.cpp"
+"i2c_bus.cpp"
 "main.cpp"
 "misc_hw.cpp"
 "network.cpp"
