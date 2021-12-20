@@ -50,7 +50,7 @@ void CTCPServerBase::start()
     if (m_task_handle) return;
 
     // Create the task
-    xTaskCreatePinnedToCore(launch_task, "tcp_server", 4096, this, TASK_PRIO_TCP, &m_task_handle, TASK_CPU);
+    xTaskCreatePinnedToCore(launch_task, "tcp_server", 3000, this, TASK_PRIO_TCP, &m_task_handle, TASK_CPU);
 }
 //=========================================================================================================
 
