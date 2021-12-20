@@ -2,14 +2,6 @@
 // tcp_server_base.h - The base class for a TCP command server
 //=========================================================================================================
 #pragma once
-#include <sys/param.h>
-#include <lwip/err.h>
-#include <lwip/sockets.h>
-#include <lwip/sys.h>
-#include <lwip/netdb.h>
-#include <stdint.h>
-#include <stdarg.h>
-#include "common.h"
 
 class CTCPServerBase
 {

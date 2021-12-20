@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
-#include "tcp_server_base.h"
-
+#include <sys/param.h>
+#include <lwip/err.h>
+#include <lwip/sockets.h>
+#include <lwip/sys.h>
+#include <lwip/netdb.h>
+#include <stdint.h>
+#include <stdarg.h>
+#include "globals.h"
 
 static const char* TAG = "tcp_server";
 
@@ -150,6 +156,9 @@ again:
 //=========================================================================================================
 void CTCPServerBase::handle_new_message()
 {
+    // Tell the network that there is activity on this socket
+    Network.register_activity();
+
     // Point to our input message
     char* in = m_message;
 
