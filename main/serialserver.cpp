@@ -11,7 +11,7 @@
 //========================================================================================================= 
 // handle_fwrev() - Reports the firmware revision to the user
 //========================================================================================================= 
-bool CSerialServer::handle_fwrev()
+bool CTCPServer::handle_fwrev()
 {
     char idf_version[50];
 
@@ -33,7 +33,7 @@ bool CSerialServer::handle_fwrev()
 //========================================================================================================= 
 // handle_freeram() - Reports the amount of unallocated heap memory
 //========================================================================================================= 
-bool CSerialServer::handle_freeram()
+bool CTCPServer::handle_freeram()
 {
     // Find out how much free RAM we have available
     int free_ram = xPortGetFreeHeapSize();
@@ -48,7 +48,7 @@ bool CSerialServer::handle_freeram()
 //========================================================================================================= 
 // handle_reboot() - Performs a soft-reset and reboots the firmware
 //========================================================================================================= 
-bool CSerialServer::handle_reboot()
+bool CTCPServer::handle_reboot()
 {
     // Tell the user that we received his command
     pass();
@@ -73,7 +73,7 @@ bool CSerialServer::handle_reboot()
 //
 // If a parameter is supplied, it should be in HH:MM:SS format, in Coordinated Universal Time
 //========================================================================================================= 
-bool CSerialServer::handle_time()
+bool CTCPServer::handle_time()
 {
     const char* token;
     char buffer[64];
@@ -100,7 +100,7 @@ bool CSerialServer::handle_time()
 // handle__nvget() - Handles all of the commands that report values from the non-volatile storage
 //                   data structure
 //========================================================================================================= 
-bool CSerialServer::handle_nvget()
+bool CTCPServer::handle_nvget()
 {
     const char* token;
 
@@ -169,7 +169,7 @@ bool CSerialServer::handle_nvget()
 // handle_nvset() - Handles all of the commands that store values into the non-volatile storage
 //                  data structure
 //========================================================================================================= 
-bool CSerialServer::handle_nvset()
+bool CTCPServer::handle_nvset()
 {
     const char *token, *value;
 
@@ -217,7 +217,7 @@ bool CSerialServer::handle_nvset()
 //========================================================================================================= 
 // handle_rssi() - Reports Wi-Fi RSSI (Received Signal Strength Indicator)
 //========================================================================================================= 
-bool CSerialServer::handle_rssi()
+bool CTCPServer::handle_rssi()
 {
     return pass("%i", System.rssi());
 }
@@ -229,7 +229,7 @@ bool CSerialServer::handle_rssi()
 //========================================================================================================= 
 // handle_wifi() - Handles Wi-Fi management commands
 //========================================================================================================= 
-bool CSerialServer::handle_wifi()
+bool CTCPServer::handle_wifi()
 {
     const char* token;
     
@@ -252,7 +252,7 @@ bool CSerialServer::handle_wifi()
 //========================================================================================================= 
 // handle_stack() - Displays the remaining free bytes on the task stacks
 //========================================================================================================= 
-bool CSerialServer::handle_stack()
+bool CTCPServer::handle_stack()
 {
     for (int i=0; i<TASK_IDX_COUNT; ++i)
     {
@@ -272,7 +272,7 @@ bool CSerialServer::handle_stack()
 // 
 // Passed:  token = Pointer to the command string
 //=========================================================================================================
-void CSerialServer::on_command(const char* token)
+void CTCPServer::on_command(const char* token)
 {
          if token_is("fwrev")    handle_fwrev();
     else if token_is("freeram")  handle_freeram();

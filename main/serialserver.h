@@ -4,9 +4,9 @@
 
 
 //=========================================================================================================
-// Serial Server - Handles incoming commands from the serial port
+// TCP Server - Handles incoming commands from a TCP socket
 //=========================================================================================================
-class CSerialServer : public CSerialServerBase
+class CTCPServer : public CTCPServerBase
 {
 
 protected:

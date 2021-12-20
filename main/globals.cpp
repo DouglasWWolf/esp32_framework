@@ -18,7 +18,7 @@ CNetwork    Network;
 CSystem     System;
 
 // The TCP server
-CSerialServer TCPServer;
+CTCPServer TCPServer;
 
 // Stack high-water mark manager
 CStackTrack StackMgr;

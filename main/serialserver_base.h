@@ -11,7 +11,7 @@
 #include <stdarg.h>
 #include "common.h"
 
-class CSerialServerBase
+class CTCPServerBase
 {
 
     //--------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ class CSerialServerBase
 public:
 
     // Constructor
-    CSerialServerBase();
+    CTCPServerBase();
 
     // Starts the thread that runs the server
     void    start();

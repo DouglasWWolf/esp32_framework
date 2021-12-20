@@ -11,7 +11,7 @@ static const char* TAG = "tcp_server";
 //=========================================================================================================
 // Constructor() 
 //=========================================================================================================
-CSerialServerBase::CSerialServerBase()
+CTCPServerBase::CTCPServerBase()
 {
     m_task_handle = nullptr;
     m_sock = CLOSED;
@@ -28,7 +28,7 @@ CSerialServerBase::CSerialServerBase()
 static void launch_task(void *pvParameters)
 {
     // Fetch a pointer to the object that is going to run out task
-    CSerialServerBase* p_object = (CSerialServerBase*) pvParameters;
+    CTCPServerBase* p_object = (CTCPServerBase*) pvParameters;
     
     // And run the task for that object!
     p_object->task();
@@ -39,7 +39,7 @@ static void launch_task(void *pvParameters)
 //=========================================================================================================
 // start() - Starts the TCP server task
 //=========================================================================================================
-void CSerialServerBase::start()
+void CTCPServerBase::start()
 {
     // If we're already started, do nothing
     if (m_task_handle) return;
@@ -53,7 +53,7 @@ void CSerialServerBase::start()
 //=========================================================================================================
 // stop() - Stops the TCP server task
 //=========================================================================================================
-void CSerialServerBase::stop()
+void CTCPServerBase::stop()
 {
     static TaskHandle_t task_handle;
 
@@ -82,7 +82,7 @@ void CSerialServerBase::stop()
 //     If the input stream closes, read() should return -1
 //     If read() returns -1, this routine will return
 //=========================================================================================================
-void CSerialServerBase::execute()
+void CTCPServerBase::execute()
 {
     char c;
 
@@ -149,7 +149,7 @@ again:
 //
 // On Entry:  m_message = Null terminated character string
 //=========================================================================================================
-void CSerialServerBase::handle_new_message()
+void CTCPServerBase::handle_new_message()
 {
     // Point to our input message
     char* in = m_message;
@@ -205,7 +205,7 @@ void CSerialServerBase::handle_new_message()
 //
 // Notes: This routine always leaves m_token pointing to the first byte of the following token
 //=========================================================================================================
-bool CSerialServerBase::get_next_token(const char** p_retval)
+bool CTCPServerBase::get_next_token(const char** p_retval)
 {
     char c;
 
@@ -284,7 +284,7 @@ bool CSerialServerBase::get_next_token(const char** p_retval)
 //=========================================================================================================
 // pass() - Reports OK
 //=========================================================================================================
-bool CSerialServerBase::pass()
+bool CTCPServerBase::pass()
 {
     ::send(m_sock, "OK\r\n", 4, 0);
     return true;
@@ -295,7 +295,7 @@ bool CSerialServerBase::pass()
 //=========================================================================================================
 // pass() - A printf-style function that allows a derives class to report success
 //=========================================================================================================
-bool CSerialServerBase::pass(const char* fmt, ...)
+bool CTCPServerBase::pass(const char* fmt, ...)
 {
     char buffer[200] = "OK ";
     va_list args;
@@ -313,7 +313,7 @@ bool CSerialServerBase::pass(const char* fmt, ...)
 //=========================================================================================================
 // fail() - A printf-style function that allows a derives class to report success
 //=========================================================================================================
-bool CSerialServerBase::fail(const char* fmt, ...)
+bool CTCPServerBase::fail(const char* fmt, ...)
 {
     char buffer[200] = "FAIL ";
     va_list args;
@@ -330,7 +330,7 @@ bool CSerialServerBase::fail(const char* fmt, ...)
 //=========================================================================================================
 // fail_syntax() - A convenience method for reporting a syntax error
 //=========================================================================================================
-bool CSerialServerBase::fail_syntax()
+bool CTCPServerBase::fail_syntax()
 {
     fail("SYNTAX");
     return false;
@@ -342,7 +342,7 @@ bool CSerialServerBase::fail_syntax()
 //=========================================================================================================
 // replyf() - A printf-style function that outputs formatted strings
 //=========================================================================================================
-void CSerialServerBase::replyf(const char* fmt, ...)
+void CTCPServerBase::replyf(const char* fmt, ...)
 {
     char buffer[200];
     va_list args;
@@ -369,7 +369,7 @@ int m_server_port = 2000;
 //
 // On Exit:  sock = socket descriptor of a socket that has a client connected to it
 //========================================================================================================= 
-bool CSerialServerBase::wait_for_connection()
+bool CTCPServerBase::wait_for_connection()
 {
     int error, True = 1;
     struct sockaddr_in sock_desc;
@@ -444,7 +444,7 @@ bool CSerialServerBase::wait_for_connection()
 //========================================================================================================= 
 // hard_shutdown() - Forces the socket closed
 //========================================================================================================= 
-void CSerialServerBase::hard_shutdown()
+void CTCPServerBase::hard_shutdown()
 {
     if (m_sock != CLOSED)
     {
@@ -463,7 +463,7 @@ void CSerialServerBase::hard_shutdown()
 //========================================================================================================= 
 // task() - When the thread is spawned, this is the routine that starts in its own thread
 //========================================================================================================= 
-void CSerialServerBase::task()
+void CTCPServerBase::task()
 {
     // Ensure that sockets are closed
     hard_shutdown();
@@ -488,7 +488,7 @@ void CSerialServerBase::task()
 // set_nagling() - Turns on and off Nagle's Algorithm.  If Nagling is off, all packets will be sent to the
 //                 interface immediately upon  completion of a "::send()" operation
 //========================================================================================================= 
-void CSerialServerBase::set_nagling(bool flag)
+void CTCPServerBase::set_nagling(bool flag)
 {
     // Set up our flag that will be passed to setsockopt()
     char value = flag ? 1 : 0;
