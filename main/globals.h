@@ -8,7 +8,6 @@
 #include "misc_hw.h"
 #include "nvram.h"
 #include "stack_track.h"
-#include "tcp_server.h"
 #include "buttons.h"
 #include "i2c_bus.h"
 #include "serialserver.h"
@@ -19,10 +18,9 @@ extern CNetwork    Network;
 extern CFlashIO    FlashIO;
 extern CNVRAM      NVRAM;
 extern CStackTrack StackMgr;
-extern CTCPServer  TCPServer;
 extern CProvButton ProvButton;
 extern CI2C        I2C;
-extern CSerialServer NewTCPServer;
+extern CSerialServer TCPServer;
 
 
 uint32_t crc32(void *buf, size_t len);
