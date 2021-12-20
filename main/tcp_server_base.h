@@ -20,7 +20,7 @@ class CTCPServerBase
 public:
 
     // Constructor
-    CTCPServerBase();
+    CTCPServerBase(int port);
 
     // Starts the thread that runs the server
     void    start();
@@ -106,6 +106,9 @@ private:  /* TCP and ESP specific stuff */
 
     // This will be true if there is a client connected
     bool            m_has_client;
+
+    // This is the server port we listen on
+    int             m_server_port;
 
 };
 

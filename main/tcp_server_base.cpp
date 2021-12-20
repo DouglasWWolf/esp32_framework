@@ -9,11 +9,12 @@ static const char* TAG = "tcp_server";
 //=========================================================================================================
 // Constructor() 
 //=========================================================================================================
-CTCPServerBase::CTCPServerBase()
+CTCPServerBase::CTCPServerBase(int port)
 {
     m_task_handle = nullptr;
     m_sock = CLOSED;
     m_has_client = false;
+    m_server_port = port;
 }
 //=========================================================================================================
 
@@ -352,9 +353,6 @@ void CTCPServerBase::replyf(const char* fmt, ...)
 }
 //=========================================================================================================
 
-
-
-int m_server_port = 2000;
 
 //========================================================================================================= 
 // wait_for_connection() - Closes down any existing socket, creates a new one, and starts listening for 

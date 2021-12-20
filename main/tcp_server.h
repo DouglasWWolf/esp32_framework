@@ -8,6 +8,10 @@
 //=========================================================================================================
 class CTCPServer : public CTCPServerBase
 {
+public:
+
+    // Constructor - just calls the base class
+    CTCPServer(int port) : CTCPServerBase(port) {}
 
 protected:
 
