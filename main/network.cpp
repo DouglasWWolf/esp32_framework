@@ -220,8 +220,10 @@ void CNetwork::event_handler(esp_event_base_t event_base, int32_t event_id, void
         setup_mdns();
 
         // Fetch the current time via an NTP server on the internet. 
+        #if USE_NTP
         printf("$$$>>>NTP\n");
         get_time_via_ntp();
+        #endif
 
         // Start the servers
         TCPServer.start();
