@@ -1,5 +1,5 @@
 //=========================================================================================================
-// tcp_server_base.h - The base class for a serial input based command server
+// tcp_server_base.h - The base class for a TCP command server
 //=========================================================================================================
 #pragma once
 #include <sys/param.h>
