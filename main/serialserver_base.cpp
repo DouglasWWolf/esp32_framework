@@ -15,6 +15,7 @@ CSerialServerBase::CSerialServerBase()
 {
     m_task_handle = nullptr;
     m_sock = CLOSED;
+    m_has_client = false;
 }
 //=========================================================================================================
 
@@ -373,6 +374,9 @@ bool CSerialServerBase::wait_for_connection()
     int error, True = 1;
     struct sockaddr_in sock_desc;
 
+    // We have no client connected
+    m_has_client = false;
+
     // If we already have a socket created, close it down
     hard_shutdown();
 
@@ -423,6 +427,9 @@ bool CSerialServerBase::wait_for_connection()
 
     // And start using the new socket
     m_sock = new_socket;
+
+    // We now have a client connected
+    m_has_client = true;
 
     // Tell the caller that all is well
     return true;

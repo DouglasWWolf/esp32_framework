@@ -31,6 +31,9 @@ public:
     // Call this to turn Nagle's algorithm on or off.  "false" means "send packets immediately"
     void    set_nagling(bool flag);
 
+    // Call this to find out if there is a client connected to our server
+    bool    has_client() {return m_has_client;}
+
     //--------------------------------------------------------------------------------
     // Public only so that launch_thread() has access to it
     //--------------------------------------------------------------------------------
@@ -100,6 +103,9 @@ private:  /* TCP and ESP specific stuff */
 
     // This is the socket descriptor of the TCP socket
     int             m_sock;
+
+    // This will be true if there is a client connected
+    bool            m_has_client;
 
 };
 

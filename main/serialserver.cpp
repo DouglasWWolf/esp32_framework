@@ -96,8 +96,6 @@ bool CSerialServer::handle_time()
 
 
 
-
-
 //========================================================================================================= 
 // handle__nvget() - Handles all of the commands that report values from the non-volatile storage
 //                   data structure
@@ -143,7 +141,6 @@ bool CSerialServer::handle_nvget()
     {
         return pass("\"%s\"", NVS.data.network_ssid);
     }
-
 
     // Is the user asking for the network user-id?
     if token_is("netuser")
@@ -217,6 +214,59 @@ bool CSerialServer::handle_nvset()
 
 
 
+//========================================================================================================= 
+// handle_rssi() - Reports Wi-Fi RSSI (Received Signal Strength Indicator)
+//========================================================================================================= 
+bool CSerialServer::handle_rssi()
+{
+    return pass("%i", System.rssi());
+}
+//========================================================================================================= 
+
+
+
+
+//========================================================================================================= 
+// handle_wifi() - Handles Wi-Fi management commands
+//========================================================================================================= 
+bool CSerialServer::handle_wifi()
+{
+    const char* token;
+    
+    // Fetch the next token 
+    get_next_token(&token);
+
+    // An empty token or "rssi" reports the current RSSI from the WiFi radio
+    if (token[0] == 0 || token_is("rssi"))
+    {
+        return pass("%i", System.rssi());
+    }
+
+    // If we get here, we didn't understand the sub-command
+    return fail_syntax();
+}
+//========================================================================================================= 
+
+
+
+//========================================================================================================= 
+// handle_stack() - Displays the remaining free bytes on the task stacks
+//========================================================================================================= 
+bool CSerialServer::handle_stack()
+{
+    for (int i=0; i<TASK_IDX_COUNT; ++i)
+    {
+        task_idx_t idx = (task_idx_t)i;
+        replyf(" %-10s %5i", StackMgr.name(idx), StackMgr.remaining(idx));
+    }
+    return pass();
+}
+//========================================================================================================= 
+
+
+
+
+
 //=========================================================================================================
 // on_command() - The top level dispatcher for commands
 // 
@@ -224,7 +274,6 @@ bool CSerialServer::handle_nvset()
 //=========================================================================================================
 void CSerialServer::on_command(const char* token)
 {
-
          if token_is("fwrev")    handle_fwrev();
     else if token_is("freeram")  handle_freeram();
     else if token_is("reboot")   handle_reboot();
@@ -232,6 +281,9 @@ void CSerialServer::on_command(const char* token)
     else if token_is("nvget")    handle_nvget();
     else if token_is("nv")       handle_nvget();
     else if token_is("nvset")    handle_nvset();
+    else if token_is("rssi")     handle_rssi();
+    else if token_is("wifi")     handle_wifi();
+    else if token_is("stack")    handle_stack();
 
     else fail_syntax();
 }
