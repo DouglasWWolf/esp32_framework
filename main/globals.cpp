@@ -4,6 +4,7 @@
 #include "globals.h"
 #include "common.h"
 
+
 // High-priority task for reading/writing NVS
 CFlashIO    FlashIO;
 
@@ -18,6 +19,7 @@ CSystem     System;
 
 // The TCP server
 CTCPServer  TCPServer;
+CSerialServer NewTCPServer;
 
 // Stack high-water mark manager
 CStackTrack StackMgr;

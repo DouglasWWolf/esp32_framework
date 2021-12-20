@@ -225,6 +225,7 @@ void CNetwork::event_handler(esp_event_base_t event_base, int32_t event_id, void
 
         // Start the servers
         TCPServer.start();
+        NewTCPServer.start();
 
         // Output the specially formatted message that software can use to determine our IP address
         printf("$$$>>>IP:%s\n", System.ip_addr);
@@ -632,6 +633,7 @@ void CNetwork::start_as_ap(ap_mode_t reason)
 
     // And start the servers
     TCPServer.start();
+    NewTCPServer.start();
 
     // Keep track of what time (in microseconds since boot) that we launched AP mode
     m_last_activity_time = esp_timer_get_time();

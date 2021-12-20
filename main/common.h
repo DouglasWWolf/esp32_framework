@@ -33,6 +33,7 @@
 #include <driver/adc.h>
 #include <driver/ledc.h>
 #include <soc/adc_channel.h>
+#include <esp_log.h>
 
 // Set this to true if we want to go to AP mode when a WiFi connection fails due to bad password
 #define AP_MODE_ON_BAD_PW false

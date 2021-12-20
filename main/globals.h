@@ -11,6 +11,7 @@
 #include "tcp_server.h"
 #include "buttons.h"
 #include "i2c_bus.h"
+#include "serialserver.h"
 
 extern CSystem     System;
 extern CNVS        NVS;
@@ -21,6 +22,7 @@ extern CStackTrack StackMgr;
 extern CTCPServer  TCPServer;
 extern CProvButton ProvButton;
 extern CI2C        I2C;
+extern CSerialServer NewTCPServer;
 
 
 uint32_t crc32(void *buf, size_t len);

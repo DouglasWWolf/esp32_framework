@@ -10,6 +10,8 @@ idf_component_register(SRCS
 "nv_storage.cpp"
 "nvram.cpp"
 "parser.cpp"
+"serialserver.cpp"
+"serialserver_base.cpp"
 "tcp_handlers.cpp"
 "tcp_server.cpp"
 "stack_track.cpp"
