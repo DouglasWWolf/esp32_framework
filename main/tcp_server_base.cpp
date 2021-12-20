@@ -194,6 +194,8 @@ void CTCPServerBase::handle_new_message()
     // Call the top level command handler
     on_command(first_token);
 
+    // Keep track of the high-water mark on the stack for this thread
+    StackMgr.record_hwm(TASK_IDX_TCP_SERVER);
 }
 //=========================================================================================================
 

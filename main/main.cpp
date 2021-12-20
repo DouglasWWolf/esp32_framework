@@ -70,7 +70,7 @@ void cpp_main()
     
 
     // Start the main periodic task
-    xTaskCreatePinnedToCore(periodic_task, "main", 6 * 1024, nullptr, DEFAULT_TASK_PRI, NULL, TASK_CPU);
+    xTaskCreatePinnedToCore(periodic_task, "main", 3 * 1024, nullptr, DEFAULT_TASK_PRI, NULL, TASK_CPU);
 
     // And we don't need this task anymore
     vTaskDelete(nullptr);
