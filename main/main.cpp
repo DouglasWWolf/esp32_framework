@@ -129,8 +129,7 @@ void do_periodic()
     // in STA mode, re-start the network in wireless-access-point mode
     if (ProvButton.is_pressed_at_least(4000) && Network.wifi_status() != WIFI_AP_MODE)
     {
-        NVRAM.start_wifi_ap = true;
-        System.reboot();
+        System.reboot(true);
     }
 }
 //=========================================================================================================

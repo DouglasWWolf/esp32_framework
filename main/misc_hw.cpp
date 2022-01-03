@@ -141,13 +141,18 @@ int64_t CSystem::fetch_time(char* output)
 //=========================================================================================================
 
 
+
+
 //=========================================================================================================
 // reboot() - Reboot the system
 //=========================================================================================================
-void CSystem::reboot()
+void CSystem::reboot(bool force_wifi_ap)
 {
     // Tell the world that we're rebooting
     is_rebooting = true;
+
+    // If the caller wants to start in Wi-Fi AP mode, make it so
+    if (force_wifi_ap) NVRAM.start_wifi_ap = true;
 
     // Disconnect from the router.  We have to do this or some routers won't let us
     // reconnect right away
@@ -157,6 +162,7 @@ void CSystem::reboot()
     esp_restart();
 }
 //=========================================================================================================
+
 
 
 

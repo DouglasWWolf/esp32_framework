@@ -53,7 +53,7 @@ public:
     int     rssi();
 
     // Reboots the system
-    void    reboot();
+    void    reboot(bool force_wifi_ap = false);
 
     // Sets the system time
     bool    set_time(const char* token);
